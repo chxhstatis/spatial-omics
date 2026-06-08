@@ -406,3 +406,5 @@ from .he import he_purity  # noqa: E402
 
 # cohort comparison — cross-sample bulk CNA (chrX/sex-controlled)
 from .cohort import cohort_compare  # noqa: E402
+
+from .register import register  # noqa: E402

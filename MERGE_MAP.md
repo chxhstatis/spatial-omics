@@ -30,7 +30,6 @@ spatial-omics/
 │   └── stage2_spatial_map/     #   16bp 条码 → 50×50 真实坐标（X/Y 192 校正表）
 ├── scripts_legacy/             # 仅"未 API 化的独有功能 + 路线图"（已去重，见其 README.md）
 │   ├── stage3_cna_clone/compute_bin_gc.py   # 参考数据生成器（独有工具）
-│   ├── stage5_wsi_registration/stage5_register.py  # H&E 配准（待 API 化 → tl.register）
 │   └── stage4/5/6 PLAN.md                    # 路线图
 ├── docs/ (mkdocs-material) · tests/ · examples/ · pyproject.toml · CITATION.cff
 ```
@@ -60,7 +59,7 @@ spatial-omics/
 
 scripts_legacy 里被 API 覆盖的 stage3–6 算法已**全部删除**，做到"一个算法只有一处实现"（src API）。
 原件在 git 历史 + `99_归档Archive/旧版代码/`。详见 `scripts_legacy/README.md` 的对照表。
-剩余只有：`compute_bin_gc.py`（参考生成器）、`stage5_register.py`（待 API 化）、stage4/5/6 PLAN（路线图）。
+剩余只有：`compute_bin_gc.py`（参考生成器）+ stage4/5/6 PLAN（路线图）。所有 stage3–6 算法均已 API 化（含 `tl.register`），零重复。
 
 ## 旧仓库处置
 

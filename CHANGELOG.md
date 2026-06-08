@@ -9,7 +9,8 @@ All notable changes to `spatial-omics`. Format: [Keep a Changelog](https://keepa
 - De-duplication audit: removed the stage3–6 scripts from `scripts_legacy/` that the
   package API now implements (one algorithm = one implementation). Originals preserved in
   git history + the project archive. `scripts_legacy/README.md` maps old script → API; what
-  remains is only the not-yet-ported port-backlog (compute_bin_gc, stage5_register) + roadmap.
+  remains is only a reference-data builder (compute_bin_gc) + roadmap PLANs. Then ported
+  `tl.register` (the last unported algorithm) — scripts_legacy now has NO duplicated algorithm.
 
 
 First public release. An AnnData-native, scanpy-style toolkit for **sparse spatial
@@ -34,6 +35,8 @@ reject the false clones naive methods produce on low-purity tissue.
   true-permutation null), `clone_diagnostics` (CNA distinctness + CH-boundary),
   `detect_channel_stripes` (microfluidic banding), `morans_i`.
 - `he_purity` — independent H&E colour-deconvolution cellularity/stroma estimate (`[he]` extra).
+- `register` — H&E ↔ spot-grid registration (ROI-box detection, data-driven orientation
+  with an honest ambiguity flag; `[he]` extra).
 - `cohort_compare` — cross-sample bulk CNA; sample similarity on autosomes only (chrX
   excluded so samples don't cluster by sex); inferred sex; recurrence + recurrent-loci tables.
 

@@ -43,3 +43,19 @@ def test_he_purity_on_synthetic_image(tmp_path):
     assert 0.0 <= res["nuclei_fraction"] <= 1.0
     assert 0.0 <= res["stroma_fraction"] <= 1.0
     assert "H_over_E" in res
+
+
+def test_register_on_synthetic_image(tmp_path):
+    cv2 = pytest.importorskip("cv2")
+    img = np.full((300, 400, 3), 245, np.uint8)
+    img[60:240, 80:320] = (200, 150, 200)
+    cv2.rectangle(img, (80, 60), (320, 240), (40, 40, 220), 4)   # red ROI box
+    p = tmp_path / "he.jpg"; cv2.imwrite(str(p), img)
+    a = sc.datasets.simulate(coverage=0.4, n_clones=2, seed=0)
+    res = sc.tl.register(a, str(p))
+    assert res["box_color"] == "red"
+    assert len(res["box_corners"]) == 4
+    assert a.obsm["X_he"].shape == (a.n_obs, 2)          # per-spot pixel coords stored
+    assert "tissue_density" in a.obs
+    assert isinstance(res["orientation_resolved"], bool)
+    assert len(res["all_orientation_r"]) == 8            # all 8 orientations scored

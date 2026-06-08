@@ -16,16 +16,17 @@ git history and in the project archive (`99_归档Archive/旧版代码/spatial_o
 | `stage3_bulk_cna.py` | `pp.normal_anchor` + `tl.copy_number` (bulk = pseudobulk) |
 | `compare_samples_cna.py` | `tl.cohort_compare` |
 | `stage5_purity_he.py` | `tl.he_purity` |
+| `stage5_register.py` | `tl.register` |
 | `ref/` data, `run_stage3.sh`, `README_stage3.md` | bundled `src/spatial_omics/_ref/` + docs site |
 
-## Still here — NOT yet in the API (the port backlog) + roadmap
+## Still here — utility + roadmap (the port backlog is now empty)
 
 | File | Status |
 |---|---|
-| `stage3_cna_clone/compute_bin_gc.py` | **Utility** — builds the bundled GC reference from a genome FASTA (needed when adding a new genome, e.g. mm10 / T2T). Keep. |
-| `stage5_wsi_registration/stage5_register.py` (+ `README_stage5.md`) | **Port target** — H&E ROI-box → 50×50 grid registration. Becomes `tl.register` (uses the `[he]` extra, like `tl.he_purity`). |
+| `stage3_cna_clone/compute_bin_gc.py` | **Utility** — builds the bundled GC reference from a genome FASTA (needed when adding a new genome, e.g. mm10 / T2T). Not a per-sample algorithm, so it stays a script. |
 | `stage4_rna_integration/PLAN.md` | **Roadmap** — `tl.variance_decomposition` (needs matched RNA). |
-| `stage5_wsi_registration/PLAN.md` | **Roadmap** — registration → annotation → anchoring. |
+| `stage5_wsi_registration/PLAN.md` | **Roadmap** — registration (done: `tl.register`) → annotation → anchoring (next). |
 | `stage6_control_compare/PLAN.md` | **Roadmap** — control / Panel-of-Normals comparison. |
 
-When a port-target lands in the API, delete it here too (keep "one implementation").
+Every stage3–6 *algorithm* is now in the API (one implementation). What remains is a
+reference-data builder + roadmap PLANs for features that need new data (RNA, controls).
