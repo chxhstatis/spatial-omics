@@ -1,3 +1,10 @@
+## [0.3.0] - 2026-06-08
+### Added
+- `pp.normal_anchor` (+ signal-collapse guard) and `pp.pick_normal_spots` — external/data-driven
+  normal anchoring with a guard that detects when no genuine internal normal exists.
+- `tl.he_purity` — independent H&E colour-deconvolution cellularity/stroma estimate (`[he]` extra).
+- 3 new tests (14 total, all green). he_purity reproduces the reference 520 numbers (nuclei 0.36).
+
 ## [0.2.0] - 2026-06-08
 ### Consolidated
 - Merged the standalone `spatial_omics_pipeline` (stage scripts) into this one canonical repo:

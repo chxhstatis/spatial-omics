@@ -19,7 +19,8 @@ from .._bins import bin_offsets
 from .._constants import autosomes
 
 __all__ = ["add_reference", "bin_qc", "correct_bias", "normalize",
-           "load_reference_tracks", "default_reference_dir"]
+           "load_reference_tracks", "default_reference_dir",
+           "normal_anchor", "pick_normal_spots"]
 
 
 def default_reference_dir() -> str:
@@ -182,3 +183,67 @@ def normalize(adata, *, normal_mask=None, spatial_k=49):
     rel[pres] = libn[pres] / ref
     adata.layers["relative"] = rel.astype(np.float32)
     return adata
+
+
+# ---------------------------------------------------------------- normal anchoring + guard
+def _pseudobulk_log2_sd(adata):
+    """SD across QC bins of the per-bin pseudobulk log2(relative) — the bulk CNA amplitude."""
+    rel = np.asarray(adata.layers["relative"], dtype=float)
+    with np.errstate(divide="ignore", invalid="ignore"):
+        log2 = np.log2(np.clip(rel, 1e-3, None))
+    pb = np.nanmedian(log2, axis=0)
+    pass_qc = adata.var["pass_qc"].values if "pass_qc" in adata.var else np.ones(adata.n_vars, bool)
+    return float(np.nanstd(pb[pass_qc]))
+
+
+def normal_anchor(adata, normal_mask, *, collapse_frac=0.4, spatial_k=49):
+    """Re-normalize against a NORMAL/reference spot set, with a signal-collapse guard.
+
+    Divides the per-spot profiles by a pseudo-normal built from ``normal_mask`` spots only
+    (the paper's ÷bulk-WGS analogue). Crucially, it first measures whether anchoring to these
+    spots *flattens* the copy-number signal: if the bulk CNA amplitude (pseudobulk log2 SD)
+    drops below ``collapse_frac`` of its un-anchored value, the reference shares the tumour's
+    own coverage pattern — there is NO genuine internal normal, and anchoring would erase real
+    CNA. In that case use an EXTERNAL reference (control / Panel-of-Normals / RNA-defined stroma).
+
+    The anchored ``layers['relative']`` is written regardless, but the diagnostic
+    (``adata.uns['spatial_omics_normal_anchor']`` with ``signal_collapsed``) tells you whether
+    to trust it. Returns ``adata``.
+    """
+    normalize(adata, normal_mask=None, spatial_k=spatial_k)
+    sd_before = _pseudobulk_log2_sd(adata)
+    normalize(adata, normal_mask=normal_mask, spatial_k=spatial_k)
+    sd_after = _pseudobulk_log2_sd(adata)
+    n_ref = int((np.asarray(normal_mask, bool) & (np.asarray(adata.layers["counts"]).sum(1) > 0)).sum())
+    collapsed = bool(sd_before > 0 and sd_after < collapse_frac * sd_before)
+    res = {"n_reference_spots": n_ref, "bulk_sd_before": sd_before, "bulk_sd_after": sd_after,
+           "signal_collapsed": collapsed,
+           "verdict": ("SIGNAL COLLAPSE: reference shares the tumour pattern -> no genuine internal "
+                       "normal; use an EXTERNAL reference (control / RNA stroma). Anchored result not "
+                       "trustworthy." if collapsed else
+                       "normal-anchored OK (real CNA retained)")}
+    adata.uns["spatial_omics_normal_anchor"] = res
+    return adata
+
+
+def pick_normal_spots(adata, *, quantile=0.30, min_frags=200, burden_key="cnv_burden"):
+    """Data-driven candidate normal spots = the FLATTEST (lowest CNV-burden) spots.
+
+    Requires ``tl.copy_number`` first (for ``cnv_burden``). Returns a boolean mask over spots.
+
+    .. warning::
+       "Flattest" is relative to the (possibly tumour-contaminated) cross-spot reference. In a
+       uniformly low-purity section there is no true internal normal, and this set will share
+       the tumour's pattern — anchoring to it erases the signal. Always feed the result through
+       :func:`normal_anchor`, whose ``signal_collapsed`` guard detects exactly that failure.
+       The reliable normal reference is EXTERNAL (control / RNA stroma).
+    """
+    if burden_key not in adata.obs:
+        raise KeyError(f"{burden_key!r} not in adata.obs — run tl.copy_number first")
+    burden = adata.obs[burden_key].values.astype(float)
+    frags = adata.obs["total_frags"].values.astype(float)
+    elig = (frags >= min_frags) & np.isfinite(burden)
+    if elig.sum() < 20:
+        elig = np.isfinite(burden) & (frags >= np.percentile(frags, 80))
+    thr = np.quantile(burden[elig], quantile)
+    return elig & (burden <= thr)

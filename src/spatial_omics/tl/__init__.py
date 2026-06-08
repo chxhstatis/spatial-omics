@@ -400,3 +400,6 @@ from .rigor import (  # noqa: E402
     clone_diagnostics,
     detect_channel_stripes,
 )
+
+# H&E morphology — independent purity/cellularity (optional [he] extra)
+from .he import he_purity  # noqa: E402
