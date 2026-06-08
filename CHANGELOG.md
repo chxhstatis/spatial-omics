@@ -11,6 +11,11 @@ All notable changes to `spatial-omics`. Format: [Keep a Changelog](https://keepa
   git history + the project archive. `scripts_legacy/README.md` maps old script → API; what
   remains is only a reference-data builder (compute_bin_gc) + roadmap PLANs. Then ported
   `tl.register` (the last unported algorithm) — scripts_legacy now has NO duplicated algorithm.
+- `CONTRIBUTING.md` (maintainer guide: data-model contract, how to add a method, the
+  one-implementation rule, golden-test policy) and `tests/test_golden.py` (regression
+  baselines: exact for deterministic quantities, tolerance for image/anchored values,
+  BEHAVIOURAL for the rigor guards). Full suite now 22 tests.
+
 
 
 First public release. An AnnData-native, scanpy-style toolkit for **sparse spatial
