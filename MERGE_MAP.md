@@ -28,12 +28,10 @@ spatial-omics/
 ├── workflow/                   # 上游（你芯片专属的 "Cell Ranger 等价物"）
 │   ├── stage1_preprocess_qc/   #   FASTQ → 注入条码 → 比对 → 去重 → fragment
 │   └── stage2_spatial_map/     #   16bp 条码 → 50×50 真实坐标（X/Y 192 校正表）
-├── scripts_legacy/             # stage3–6 原脚本 = 参考实现（API 未覆盖处仍可直接用，不丢）
-│   ├── stage3_cna_clone/       #   bulk_cna / per_spot_cnv / spatial_clones / heterogeneity /
-│   │                           #   pick_normal_spots / compare_samples_cna / compute_bin_gc / fig1f
-│   ├── stage4_rna_integration/ #   PLAN（待 RNA）
-│   ├── stage5_wsi_registration/#   register / purity_he（H&E 颜色解卷积）
-│   └── stage6_control_compare/ #   PLAN（待对照）
+├── scripts_legacy/             # 仅"未 API 化的独有功能 + 路线图"（已去重，见其 README.md）
+│   ├── stage3_cna_clone/compute_bin_gc.py   # 参考数据生成器（独有工具）
+│   ├── stage5_wsi_registration/stage5_register.py  # H&E 配准（待 API 化 → tl.register）
+│   └── stage4/5/6 PLAN.md                    # 路线图
 ├── docs/ (mkdocs-material) · tests/ · examples/ · pyproject.toml · CITATION.cff
 ```
 
@@ -57,6 +55,12 @@ spatial-omics/
 - ✅ `tl.cohort_compare`（跨样本 + chrX 性别排除）—— 已上提为 API。
 - `tl.variance_decomposition`（stage4，待同片 RNA）= multi-modal 灵魂。
 - `workflow/` 容器化（nextflow/snakemake + Docker）= 上游一键化。
+
+## 去重审计（2026-06-08）
+
+scripts_legacy 里被 API 覆盖的 stage3–6 算法已**全部删除**，做到"一个算法只有一处实现"（src API）。
+原件在 git 历史 + `99_归档Archive/旧版代码/`。详见 `scripts_legacy/README.md` 的对照表。
+剩余只有：`compute_bin_gc.py`（参考生成器）、`stage5_register.py`（待 API 化）、stage4/5/6 PLAN（路线图）。
 
 ## 旧仓库处置
 

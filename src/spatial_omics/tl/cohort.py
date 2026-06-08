@@ -4,7 +4,8 @@ Compares several samples' pseudobulk copy-number profiles: which CNA events recu
 patients (drivers) vs are private, and which tumours are alike. Sample-similarity is
 computed on AUTOSOMES ONLY — including chrX would cluster samples by sex, not tumour
 biology (a real trap: two males look 0.9-correlated just from a shared chrX loss).
-Ported from ``scripts_legacy/stage3_cna_clone/compare_samples_cna.py``.
+Ported from the stage3 pipeline's ``compare_samples_cna`` (original in git history /
+the project archive); this AnnData-native version is now the single implementation.
 """
 from __future__ import annotations
 

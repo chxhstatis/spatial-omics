@@ -21,7 +21,8 @@ detect_channel_stripes(adata, key)
 
 Background: low tumour purity caps CNA amplitude; per-spot smoothing and tissue
 coverage are both spatially autocorrelated and will fake "clones" if not controlled.
-See the project reports and ``scripts_legacy/stage3_cna_clone`` for the derivations.
+See the project reports for the derivations (the original stage3 scripts these were
+distilled from live in git history / the project archive).
 """
 from __future__ import annotations
 

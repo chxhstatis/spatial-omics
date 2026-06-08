@@ -5,6 +5,12 @@ All notable changes to `spatial-omics`. Format: [Keep a Changelog](https://keepa
 ## [Unreleased]
 
 ## [0.1.0] — 2026-06-08
+### Maintenance
+- De-duplication audit: removed the stage3–6 scripts from `scripts_legacy/` that the
+  package API now implements (one algorithm = one implementation). Originals preserved in
+  git history + the project archive. `scripts_legacy/README.md` maps old script → API; what
+  remains is only the not-yet-ported port-backlog (compute_bin_gc, stage5_register) + roadmap.
+
 
 First public release. An AnnData-native, scanpy-style toolkit for **sparse spatial
 DNA-seq** (DBiT / slide-DNA-seq): a spot × genomic-bin fragment matrix → de-novo clones,
