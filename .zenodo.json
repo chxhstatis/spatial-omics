@@ -1,0 +1,11 @@
+{
+  "title": "spatial-omics: spatial copy-number & clone analysis for sparse spatial DNA-seq",
+  "description": "An AnnData-native, scanpy-style Python toolkit for sparse spatial DNA-seq (DBiT / slide-DNA-seq): de-novo clones, per-spot copy number, permutation significance, and confound controls (rigor layer) that reject the false clones naive methods produce on low-purity tissue.",
+  "license": "MIT",
+  "upload_type": "software",
+  "keywords": ["spatial genomics", "DNA-seq", "copy number", "CNA", "clonal heterogeneity", "DBiT", "slide-DNA-seq", "scverse", "AnnData"],
+  "creators": [
+    {"name": "Xu, Hao"},
+    {"name": "Chen, Demeng"}
+  ]
+}
