@@ -21,10 +21,11 @@ nav:
   - Home: index.md
   - Installation: installation.md
   - Tutorials:
-      - Getting started: tutorials/getting-started.md
-      - Multi-modal (RNA + DNA): tutorials/multimodal.md
+      - Getting started (synthetic): tutorials/getting-started.md
+      - Artifact guards (no false clones): tutorials/artifact-guards.md
+      - Reproducing slide-DNA-seq (Nature 2022): tutorials/reproduce-nature2022.md
       - From FASTQ (upstream): tutorials/from-fastq.md
-      - Reproducing slide-DNA-seq: tutorials/reproduce-nature2022.md
+      - Multi-modal (RNA + DNA): tutorials/multimodal.md
   - API reference: api.md
 
 markdown_extensions:

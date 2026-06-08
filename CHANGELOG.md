@@ -1,3 +1,11 @@
+## [0.4.0] - 2026-06-08
+### Docs & deploy
+- Three core tutorials: getting-started (synthetic), **artifact-guards** (the headline
+  rigor demo — naive clustering finds clones in clone-free data; guards reject them),
+  reproduce-nature2022 (public PRJNA768453 flow).
+- `examples/artifact_guards.py` (runnable, CI-verified); CI now runs it.
+- `DEPLOY.md`: GitHub Pages (default) + Cloudflare Pages (China-accessible) setup.
+
 ## [0.3.0] - 2026-06-08
 ### Added
 - `pp.normal_anchor` (+ signal-collapse guard) and `pp.pick_normal_spots` — external/data-driven

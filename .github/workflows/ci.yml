@@ -19,7 +19,8 @@ jobs:
       - run: pip install -e ".[dev]"
       - run: ruff check src
       - run: pytest -q
-      - run: python examples/quickstart.py   # tutorial must stay runnable
+      - run: python examples/quickstart.py         # tutorial must stay runnable
+      - run: python examples/artifact_guards.py    # headline demo must stay runnable
 
   docs:
     runs-on: ubuntu-latest

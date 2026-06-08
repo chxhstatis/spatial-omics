@@ -73,3 +73,10 @@ Save the object for later (standard `.h5ad`, readable by scanpy/squidpy):
 ```python
 adata.write("sim.h5ad")
 ```
+
+---
+
+The rigor layer (`pp.normal_anchor`, `tl.he_purity`, `tl.spatial_heterogeneity`,
+`tl.clone_diagnostics`, `tl.detect_channel_stripes`) is what makes the results
+trustworthy on real, sparse, low-purity tissue. See
+**[Artifact guards: do not report false clones](artifact-guards.md)** next.
