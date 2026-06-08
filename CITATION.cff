@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use spatial_omics, please cite it."
+title: "spatial_omics: spatial copy-number & clone analysis for sparse spatial DNA-seq"
+authors:
+  - family-names: "Xu"
+    given-names: "Hao"
+  - family-names: "Chen"
+    given-names: "Demeng"
+version: 0.1.0
+license: MIT
+repository-code: "https://github.com/your-org/spatial-omics"
+keywords:
+  - spatial genomics
+  - DNA-seq
+  - copy-number
+  - clonal heterogeneity
+  - slide-DNA-seq

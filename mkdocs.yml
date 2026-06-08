@@ -1,0 +1,44 @@
+site_name: spatial_omics
+site_description: Spatial copy-number & clone analysis for sparse spatial DNA-seq
+repo_url: https://github.com/your-org/spatial-omics
+repo_name: your-org/spatial-omics
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      toggle: { icon: material/weather-night, name: Dark mode }
+    - scheme: slate
+      primary: indigo
+      toggle: { icon: material/weather-sunny, name: Light mode }
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Tutorials:
+      - Getting started: tutorials/getting-started.md
+      - Multi-modal (RNA + DNA): tutorials/multimodal.md
+      - From FASTQ (upstream): tutorials/from-fastq.md
+      - Reproducing slide-DNA-seq: tutorials/reproduce-nature2022.md
+  - API reference: api.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - tables
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+          options:
+            docstring_style: numpy
+            show_source: false

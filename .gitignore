@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Env
+.venv/
+venv/
+env/
+
+# Docs
+site/
+
+# Outputs / data (never commit patient data)
+*.h5ad
+examples/_figures/
+*.bam
+*.fastq*
+*.tsv.gz
+*.npz
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
