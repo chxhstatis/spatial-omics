@@ -37,7 +37,7 @@ pytest
 | `io` | `from_pipeline` / `from_matrix` → standard AnnData object |
 | `datasets` | `simulate()` synthetic ground-truth data; public-data loaders (planned) |
 | `pp` | bin QC, GC/mappability bias correction, normalize; **`normal_anchor`** (+ signal-collapse guard) and **`pick_normal_spots`** |
-| `tl` | **dual_smooth**, **call_clones**, **copy_number**, **permutation_significance**; **`he_purity`** (independent H&E cellularity, `[he]` extra) |
+| `tl` | **dual_smooth**, **call_clones**, **copy_number**, **permutation_significance**; **`he_purity`** (H&E cellularity, `[he]` extra), **`cohort_compare`** (cross-sample, chrX/sex-controlled) |
 | `tl.rigor` | **confound controls / artifact guards** — `spatial_heterogeneity`, `clone_diagnostics`, `detect_channel_stripes`, `morans_i` |
 | `pl` | spatial clone / copy-number / significance maps, clone CNA profiles |
 

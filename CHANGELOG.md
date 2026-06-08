@@ -1,3 +1,9 @@
+## [0.5.0] - 2026-06-08
+### Added
+- `tl.cohort_compare(adatas)` — cross-sample bulk CNA: recurrence track, sample similarity
+  (AUTOSOMAL — chrX excluded so samples don't cluster by sex), inferred sex, recurrent-loci
+  table. Ported from compare_samples_cna.py. 2 tests (16 total, all green).
+
 ## [0.4.0] - 2026-06-08
 ### Docs & deploy
 - Three core tutorials: getting-started (synthetic), **artifact-guards** (the headline

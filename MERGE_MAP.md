@@ -54,7 +54,7 @@ spatial-omics/
 
 - ✅ `pp.normal_anchor`（+ 信号塌缩自检）和 `pp.pick_normal_spots` —— 已上提为 API。
 - ✅ `tl.he_purity`（H&E 颜色解卷积）—— 已上提（`[he]` 可选依赖 cv2/skimage，惰性导入）。
-- `tl.cohort_compare`（跨样本 + chrX 性别排除，compare_samples_cna）→ 上提。
+- ✅ `tl.cohort_compare`（跨样本 + chrX 性别排除）—— 已上提为 API。
 - `tl.variance_decomposition`（stage4，待同片 RNA）= multi-modal 灵魂。
 - `workflow/` 容器化（nextflow/snakemake + Docker）= 上游一键化。
 
