@@ -4,7 +4,7 @@
 is the upstream pipeline (the "Cell Ranger" layer): linker/ME trimming, spatial
 barcode extraction, alignment, dedup, spatial mapping to the DBiT grid.
 
-That pipeline lives in [`spatial_omics_pipeline/`](https://github.com/your-org/spatial_omics)
+That pipeline lives in [`spatial_omics_pipeline/`](https://github.com/chxhstatis/spatial_omics)
 (stages 1–2) and is containerised for HPC/cloud. Outline:
 
 ```text

@@ -1,7 +1,7 @@
 site_name: spatial_omics
 site_description: Spatial copy-number & clone analysis for sparse spatial DNA-seq
-repo_url: https://github.com/your-org/spatial-omics
-repo_name: your-org/spatial-omics
+repo_url: https://github.com/chxhstatis/spatial-omics
+repo_name: chxhstatis/spatial-omics
 
 theme:
   name: material

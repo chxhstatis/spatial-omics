@@ -33,11 +33,11 @@ test:
     - spatial_omics
 
 about:
-  home: https://github.com/your-org/spatial-omics
+  home: https://github.com/chxhstatis/spatial-omics
   license: MIT
   license_file: LICENSE
   summary: Spatial copy-number & clone analysis for sparse spatial DNA-seq (DBiT / slide-DNA-seq).
 
 extra:
   recipe-maintainers:
-    - your-github-handle
+    - chxhstatis

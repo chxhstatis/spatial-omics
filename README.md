@@ -1,6 +1,6 @@
 # spatial_omics
 
-[![CI](https://github.com/your-org/spatial-omics/actions/workflows/ci.yml/badge.svg)](https://github.com/your-org/spatial-omics/actions)
+[![CI](https://github.com/chxhstatis/spatial-omics/actions/workflows/ci.yml/badge.svg)](https://github.com/chxhstatis/spatial-omics/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **Spatial copy-number & clone analysis for sparse spatial DNA-seq** (DBiT / slide-DNA-seq).

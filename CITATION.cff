@@ -8,7 +8,7 @@ authors:
     given-names: "Demeng"
 version: 0.1.0
 license: MIT
-repository-code: "https://github.com/your-org/spatial-omics"
+repository-code: "https://github.com/chxhstatis/spatial-omics"
 keywords:
   - spatial genomics
   - DNA-seq

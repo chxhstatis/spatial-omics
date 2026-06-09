@@ -9,7 +9,7 @@ pip install spatial_omics
 ## From source (now)
 
 ```bash
-git clone https://github.com/your-org/spatial_omics
+git clone https://github.com/chxhstatis/spatial_omics
 cd spatial_omics
 pip install -e ".[dev,docs]"
 ```

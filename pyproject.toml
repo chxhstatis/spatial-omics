@@ -34,9 +34,9 @@ dev = ["pytest>=7", "pytest-cov", "ruff", "build"]
 docs = ["mkdocs-material", "mkdocs-jupyter", "mkdocstrings[python]"]
 
 [project.urls]
-Homepage = "https://github.com/your-org/spatial-omics"
-Documentation = "https://your-org.github.io/spatial-omics"
-Issues = "https://github.com/your-org/spatial-omics/issues"
+Homepage = "https://github.com/chxhstatis/spatial-omics"
+Documentation = "https://chxhstatis.github.io/spatial-omics"
+Issues = "https://github.com/chxhstatis/spatial-omics/issues"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/spatial_omics"]
