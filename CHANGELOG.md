@@ -4,6 +4,9 @@ All notable changes to `spatial-omics`. Format: [Keep a Changelog](https://keepa
 
 ## [Unreleased]
 - `METHODS_ROADMAP.md` — prioritised plan for growing the toolkit (by data dependency).
+- `tl.segment` — piecewise-constant CNA segmentation (recursive binary segmentation, BIC
+  penalty, numpy-only) with a variance-explained / flat-genome guard. 3 tests (recovers
+  planted gain/loss with exact boundaries; flat-genome guard). Roadmap Tier A P0 done.
 
 ## [0.1.0] — 2026-06-08
 ### Maintenance
