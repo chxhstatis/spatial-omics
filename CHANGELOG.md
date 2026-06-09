@@ -3,6 +3,7 @@
 All notable changes to `spatial-omics`. Format: [Keep a Changelog](https://keepachangelog.com).
 
 ## [Unreleased]
+- `METHODS_ROADMAP.md` — prioritised plan for growing the toolkit (by data dependency).
 
 ## [0.1.0] — 2026-06-08
 ### Maintenance
