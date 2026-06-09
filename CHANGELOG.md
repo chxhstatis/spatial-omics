@@ -4,6 +4,9 @@ All notable changes to `spatial-omics`. Format: [Keep a Changelog](https://keepa
 
 ## [Unreleased]
 - `METHODS_ROADMAP.md` — prioritised plan for growing the toolkit (by data dependency).
+- `tl.integer_cn` — integer copy number + purity/ploidy from segments (BAF-free ASCAT-style
+  lattice fit; parsimony breaks the purity degeneracy; `resolvable` guard for flat/compressed
+  profiles). 4 tests (recovers CN3/CN1 at fitted purity 0.5; given-purity; flat guard; requires-segment).
 - `tl.segment` — piecewise-constant CNA segmentation (recursive binary segmentation, BIC
   penalty, numpy-only) with a variance-explained / flat-genome guard. 3 tests (recovers
   planted gain/loss with exact boundaries; flat-genome guard). Roadmap Tier A P0 done.

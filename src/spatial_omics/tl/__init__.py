@@ -410,3 +410,5 @@ from .cohort import cohort_compare  # noqa: E402
 from .register import register  # noqa: E402
 
 from .segment import segment  # noqa: E402
+
+from .integer_cn import integer_cn  # noqa: E402

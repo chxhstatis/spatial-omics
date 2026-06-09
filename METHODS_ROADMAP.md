@@ -30,16 +30,16 @@ ecosystem needs next.
 | Method | What & why | API | Priority | Status |
 |---|---|---|---|---|
 | **CNA segmentation** | Recursive binary segmentation (BIC penalty; CBS core, numpy-only) → piecewise-constant copy-number **segments** + breakpoints. Foundation for integer CN / focal events. Guard reports variance-explained + `flat_genome`. | `tl.segment` | **P0** | ✅ done |
-| **Integer copy number + ploidy** | Assign integer CN states to segments and estimate ploidy/scale (depth-ratio-based; no BAF at this depth). Makes CNA calls publication-grade and is the input clone phylogeny needs. | `tl.integer_cn` | **P0** (after segment) | todo |
-| **Purity from sequencing** | Estimate tumour fraction from the CNA-amplitude distribution (the spread of relative ratios), independent of H&E. Makes the "low purity" argument quantitative and drives normal anchoring. Pairs with `he_purity`. | `tl.estimate_purity` | P1 | todo |
+| **Integer copy number + ploidy** | BAF-free ASCAT/Ginkgo-style fit: recover tumour purity from the segment lattice (degeneracy broken by parsimony), assign integer CN states + ploidy. Guard: `resolvable` / unidentifiable on flat or over-compressed profiles. (Also yields a CNA-based purity → partially covers `tl.estimate_purity`.) | `tl.integer_cn` | **P0** | ✅ done |
+| **Purity from sequencing** | Estimate tumour fraction from the CNA-amplitude distribution. **Partly done**: `tl.integer_cn` already fits a CNA-lattice purity; a dedicated `tl.estimate_purity` could add a distribution-based estimate independent of segmentation. Pairs with `he_purity`. | `tl.estimate_purity` | P1 | partial (integer_cn) |
 | **Spatial domains** | Spatial-neighbour graph + cluster CNA into spatially-coherent **domains** (Leiden on a spatial+CNA graph; or via squidpy). "Regions of shared CNA" — more honest than per-spot clones at low resolution. | `tl.spatial_domains` | P1 | todo |
 | **Clone spatial geometry** | Boundary / interface analysis, spatial mixing index, clone adjacency. Spatial arrangement is the whole point of the assay — quantify it. | `tl.clone_geometry` | P1 | todo |
 | **Recurrent-CNA scoring** | Cohort recurrent-region scoring with significance (GISTIC-like), extending `cohort_compare`; must exclude centromere/chrX artifacts (already learned). | `tl.recurrent_cna` | P2 | partial (cohort_compare) |
 | **Benchmark vs RNA-CNV** | Run inferCNV/CopyKAT-style RNA-inferred CNV on matched data and report concordance — the trust/validation story (we infer from *measured DNA*, they from expression). | `examples/benchmark` | P2 | todo |
 | **Plotting breadth** | Genome-wide heatmap (spots × bins), domain maps, recurrence track, (later) clone phylogeny — as `pl` functions. | `pl.*` | P1–P2 | incremental |
 
-> **Next build:** `tl.integer_cn` (assign integer CN states + ploidy to the segments from
-> `tl.segment`). Then `tl.spatial_domains` + `tl.clone_geometry` + plotting (`pl.segments`).
+> **Next build:** `tl.spatial_domains` (spatial-neighbour graph + CNA domains) or `tl.clone_geometry`
+> (clone boundary / mixing), plus `pl.segments` (visualise segments + integer CN).
 
 ## Tier B — needs same-section RNA (the multimodal soul) · highest value
 
